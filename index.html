@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f5f0">
+  <meta name="description" content="Терапевтично — простые инструменты для практики. EMDR Dot и другие небольшие помощники в одном месте.">
+  <title>Терапевтично — инструменты для практики</title>
+  <link rel="icon" href="./logo.svg" type="image/svg+xml">
+  <script src="./preferences.js"></script>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="header">
+      <a class="brand" href="./" aria-label="Терапевтично" data-brand>
+        <svg class="brand-mark" width="34" height="34" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M9 31a15 15 0 0 1 15-19" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/><path d="M39 17a15 15 0 0 1-15 19" stroke="currentColor" stroke-opacity=".45" stroke-width="3.5" stroke-linecap="round"/><circle cx="24" cy="24" r="4" fill="currentColor"/></svg>
+        <span data-i18n="brand">терапевтично</span><span class="brand-period">.</span>
+      </a>
+      <div class="preferences">
+        <div class="languages" role="group" aria-label="Язык" data-language-group>
+          <button type="button" data-lang="ru" lang="ru" aria-pressed="true">RU</button>
+          <button type="button" data-lang="en" lang="en" aria-pressed="false">EN</button>
+        </div>
+        <span class="divider" aria-hidden="true"></span>
+        <button class="theme-button" type="button" aria-label="Тёмная тема" title="Тёмная тема" data-theme-toggle>
+          <svg class="moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"/></svg>
+          <svg class="sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+        </button>
+      </div>
+    </header>
+    <main id="main">
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow" data-i18n="eyebrow">НЕБОЛЬШИЕ ПОМОЩНИКИ</p>
+        <h1 id="page-title" data-i18n="title">Простые инструменты.<br>Больше внимания практике.</h1>
+        <p class="intro-copy" data-i18n="intro">Всё нужное — под рукой. Выберите инструмент<br class="desktop-break"> и начните в своём темпе.</p>
+        <div class="path-preview" aria-hidden="true"><span></span><span></span><span></span><i></i><span></span><span></span><span></span></div>
+      </section>
+      <section class="tools" aria-labelledby="tools-title">
+        <div class="section-heading"><h2 id="tools-title" data-i18n="tools">Инструменты</h2><span data-i18n="collection">Коллекция для практики</span></div>
+        <article class="tool-card" aria-labelledby="emdr-title">
+          <div class="tool-visual" aria-hidden="true">
+            <span class="visual-label">EMDR DOT</span>
+            <div class="dot-track"><span></span><span></span><span></span><i></i><span></span><span></span><span></span></div>
+            <span class="visual-caption" data-i18n="visual">Движение. Ритм. Внимание.</span>
+          </div>
+          <div class="tool-content">
+            <div class="tool-meta"><span class="category" data-i18n="category">Визуальная стимуляция</span><span class="tool-number">01</span></div>
+            <h3 id="emdr-title">EMDR <span>Dot</span></h3>
+            <p class="tool-description" data-i18n="description">Движущаяся точка и настраиваемый таймер. Выберите скорость, количество подходов и время отдыха.</p>
+            <ul class="features"><li data-i18n="feature1">Без регистрации</li><li data-i18n="feature2">Настройки сохраняются</li></ul>
+            <a class="primary" href="https://terapevti4no.github.io/emdrdot/"><span data-i18n="open">Открыть инструмент</span><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>
+          </div>
+        </article>
+        <p class="collection-note"><span class="small-mark" aria-hidden="true">+</span><span data-i18n="more">Здесь будут появляться новые инструменты.</span></p>
+      </section>
+      <aside class="practice-note"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 10v7m0-11v2"/></svg><p data-i18n="note">Инструменты помогают организовать практику и не заменяют работу со специалистом.</p></aside>
+    </main>
+    <footer class="page-footer"><span data-i18n="footerBrand">ТЕРАПЕВТИЧНО</span><span class="footer-dot" aria-hidden="true">·</span><span data-i18n="footer">С вниманием к простому</span></footer>
+  </div>
+</body>
+</html>
