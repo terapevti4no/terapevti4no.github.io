@@ -1,0 +1,25 @@
+{
+  "name": "terapevti4no-home",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 4173",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4173",
+    "ui:update": "terapevti4no-ui",
+    "ui:check": "terapevti4no-ui --latest --check"
+  },
+  "dependencies": {
+    "@terapevti4no/ui": "https://github.com/terapevti4no/ui/releases/download/v0.2.1/terapevti4no-ui-0.2.1.tgz",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "typescript": "~5.9.3",
+    "vite": "^7.1.0"
+  }
+}

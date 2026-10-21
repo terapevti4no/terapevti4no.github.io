@@ -2,58 +2,14 @@
 <html lang="ru" data-theme="light">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#f6f5f0">
   <meta name="description" content="Терапевтично — простые инструменты для практики. EMDR Dot и другие небольшие помощники в одном месте.">
   <title>Терапевтично — инструменты для практики</title>
-  <link rel="icon" href="./vendor/terapevti4no-ui/assets/terapevti4no-favicon.svg" type="image/svg+xml">
-  <script src="./preferences.js"></script>
-  <link rel="stylesheet" href="./vendor/terapevti4no-ui/ui.css">
-  <link rel="stylesheet" href="./style.css">
-  <script src="./app.js" defer></script>
+  <link rel="icon" type="image/svg+xml">
 </head>
 <body>
-  <div class="app-shell">
-    <header class="header">
-      <a class="brand" href="./" aria-label="Терапевтично" data-brand>
-        <svg class="brand-mark" width="34" height="34" viewBox="0 0 48 48" fill="none" aria-hidden="true"><use href="./vendor/terapevti4no-ui/assets/terapevti4no.svg#mark"/></svg>
-        <span data-i18n="brand">терапевтично</span>
-      </a>
-      <div class="preferences">
-        <div class="languages" role="group" aria-label="Язык" data-language-group>
-          <button type="button" data-lang="ru" lang="ru" aria-pressed="true">RU</button>
-          <button type="button" data-lang="en" lang="en" aria-pressed="false">EN</button>
-        </div>
-        <span class="divider" aria-hidden="true"></span>
-        <button class="theme-button" type="button" aria-label="Тёмная тема" title="Тёмная тема" data-theme-toggle>
-          <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14a8 8 0 0 1-10-10 8 8 0 1 0 10 10Z"/></svg>
-          <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
-        </button>
-      </div>
-    </header>
-    <main id="main" class="ui-main">
-      <section class="intro" aria-labelledby="page-title">
-        <p class="eyebrow" data-i18n="eyebrow">НЕБОЛЬШИЕ ПОМОЩНИКИ</p>
-        <h1 id="page-title" data-i18n="title">Больше внимания практике</h1>
-        <p class="intro-copy" data-i18n="intro">Всё нужное — под рукой. Выберите инструмент<br class="desktop-break"> и начните в своём темпе.</p>
-        <div class="path-preview" aria-hidden="true"><span></span><span></span><span></span><i></i><span></span><span></span><span></span></div>
-      </section>
-      <section class="tools" aria-labelledby="emdr-title">
-        <a class="tool-card ui-card" href="https://terapevti4no.github.io/emdrdot/" aria-labelledby="emdr-title" aria-describedby="emdr-description">
-          <div class="tool-content">
-            <div class="tool-heading">
-              <h2 id="emdr-title" class="brand emdr-logo" aria-label="EMDR Dot"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>emdr<span class="brand-dot">dot</span></h2>
-              <span class="category" data-i18n="category">Визуальная стимуляция</span>
-            </div>
-            <p id="emdr-description" class="tool-description" data-i18n="description">Движущаяся точка и настраиваемый таймер. Выберите скорость, количество подходов и время отдыха.</p>
-            <ul class="features"><li data-i18n="feature1">Без регистрации</li><li data-i18n="feature2">Настройки сохраняются</li></ul>
-          </div>
-        </a>
-        <p class="collection-note"><span class="small-mark" aria-hidden="true">+</span><span data-i18n="more">Здесь будут появляться новые инструменты.</span></p>
-      </section>
-      <aside class="ui-note"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 10v7m0-11v2"/></svg><p data-i18n="note">Инструменты помогают организовать практику и не заменяют работу со специалистом.</p></aside>
-    </main>
-    <footer class="page-footer"><span data-i18n="footerBrand">ТЕРАПЕВТИЧНО</span><span class="footer-dot" aria-hidden="true">·</span><span data-i18n="footer">С вниманием к простому</span></footer>
-  </div>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>
