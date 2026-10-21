@@ -11,7 +11,7 @@
     "ui:check": "terapevti4no-ui --latest --check"
   },
   "dependencies": {
-    "@terapevti4no/ui": "https://github.com/terapevti4no/ui/releases/download/v0.2.5/terapevti4no-ui-0.2.5.tgz",
+    "@terapevti4no/ui": "https://github.com/terapevti4no/ui/releases/download/v0.2.6/terapevti4no-ui-0.2.6.tgz",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

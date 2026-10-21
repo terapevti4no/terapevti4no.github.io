@@ -40,4 +40,20 @@ export const tools: Tool[] = [
       },
     },
   },
+  {
+    id: 'underground', name: 'Underground', logo: 'underground',
+    href: 'https://terapevti4no.space/underground/',
+    copy: {
+      ru: {
+        category: 'Практика заземления',
+        description: 'Пять чувств — пять шагов. Замечайте то, что видите, ощущаете, слышите, чувствуете на запах и вкус, в своём темпе.',
+        features: ['Техника 5–4–3–2–1', 'Без таймера'],
+      },
+      en: {
+        category: 'Grounding practice',
+        description: 'Five senses, five steps. Notice what you can see, feel, hear, smell and taste at your own pace.',
+        features: ['5–4–3–2–1 technique', 'No timer'],
+      },
+    },
+  },
 ];
