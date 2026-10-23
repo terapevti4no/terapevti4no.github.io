@@ -6,11 +6,60 @@ const practices = ['breaze', 'emdrdot', 'underground'];
 const home = manifest['src/App.tsx'];
 const bundle = (name: string) => manifest[`src/practices/${name}/App.tsx`];
 
+test('the same header and controls remain mounted while a lazy page loads', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('.tool-card')).toHaveCount(4);
+  const header = await page.locator('.header').elementHandle();
+  const language = await page.getByRole('button', { name: 'RU', exact: true }).elementHandle();
+  const theme = await page.locator('.theme-button').elementHandle();
+  let release!: () => void;
+  const gate = new Promise<void>(resolve => { release = resolve; });
+  await page.route('**/' + bundle('breaze').file, async route => { await gate; await route.continue(); });
+  const loading = page.waitForRequest('**/' + bundle('breaze').file);
+  try {
+    await page.locator('a.tool-card[href="/breaze/"]').click();
+    await loading;
+    await expect(page.getByRole('status')).toHaveText('Loading…');
+    await expect(page.locator('.header')).toBeVisible();
+    expect(await page.evaluate(element => element === document.querySelector('.header'), header)).toBe(true);
+    await page.getByRole('button', { name: 'RU', exact: true }).click();
+    await expect(page.getByRole('status')).toHaveText('Загрузка…');
+  } finally { release(); }
+  await expect(page.locator('.preset-card')).toHaveCount(4);
+  await expect(page.locator('.header .tool-logo')).toHaveAttribute('aria-label', 'Breaze');
+  for (const name of ['emdrdot', 'underground']) {
+    await page.getByRole('link', { name: 'Все инструменты', exact: true }).click();
+    await page.locator(`a.tool-card[href="/${name}/"]`).click();
+    await expect(page.locator(`.page-${name} h1`)).toBeVisible();
+    expect(await page.evaluate(element => element === document.querySelector('.header'), header)).toBe(true);
+    expect(await page.evaluate(element => element === document.querySelector('.languages button'), language)).toBe(true);
+    expect(await page.evaluate(element => element === document.querySelector('.theme-button'), theme)).toBe(true);
+    await expect(page.locator('.header')).toHaveCount(1);
+  }
+  await page.goBack();
+  await expect(page.locator('.tool-card')).toHaveCount(4);
+  await page.goForward();
+  await expect(page.locator('.page-underground h1')).toBeVisible();
+  expect(await page.evaluate(element => element === document.querySelector('.header'), header)).toBe(true);
+});
+
+test('browser history restores the existing header when leaving an active exercise', async ({ page }) => {
+  await page.goto('/');
+  await page.locator('a.tool-card[href="/underground/"]').click();
+  const header = await page.locator('.header').elementHandle();
+  await page.getByRole('button', { name: 'Begin', exact: true }).click();
+  await expect(page.locator('.header')).toBeHidden();
+  await page.goBack();
+  await expect(page.locator('.tool-card')).toHaveCount(4);
+  await expect(page.locator('.header')).toBeVisible();
+  expect(await page.evaluate(element => element === document.querySelector('.header'), header)).toBe(true);
+});
+
 test('only the opened practice downloads its JS and CSS; navigation keeps the document', async ({ page }) => {
   const requests: string[] = [];
   page.on('request', request => requests.push(new URL(request.url()).pathname));
   await page.goto('/');
-  await expect(page.locator('.tool-card')).toHaveCount(3);
+  await expect(page.locator('.tool-card')).toHaveCount(4);
   await page.evaluate(() => { (window as any).documentMarker = 'same-document'; });
   for (const name of practices) {
     expect(requests).not.toContain('/' + bundle(name).file);
@@ -23,7 +72,7 @@ test('only the opened practice downloads its JS and CSS; navigation keeps the do
   for (const name of ['emdrdot', 'underground']) expect(requests).not.toContain('/' + bundle(name).file);
   expect(await page.evaluate(() => (window as any).documentMarker)).toBe('same-document');
   await page.goBack();
-  await expect(page.locator('.tool-card')).toHaveCount(3);
+  await expect(page.locator('.tool-card')).toHaveCount(4);
   await page.goForward();
   await expect(page.locator('.page-breaze')).toBeVisible();
   await page.getByRole('link', { name: 'All tools', exact: true }).click();
@@ -53,6 +102,7 @@ for (const name of practices) {
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
     await page.reload();
     await expect(page.locator(`.page-${name} h1`)).toBeVisible();
+    const header = await page.locator('.header').elementHandle();
     if (name === 'breaze') {
       await expect(page.locator('#cycles')).toHaveValue('3');
       await page.locator('.preset-card').first().click();
@@ -66,8 +116,11 @@ for (const name of practices) {
       await page.keyboard.press('Space');
       await expect(page.locator('.marks button[aria-pressed="true"]')).toHaveCount(1);
     }
+    await expect(page.locator('.header')).toHaveCount(1);
+    await expect(page.locator('.header')).toBeHidden();
     await page.keyboard.press('Escape');
     await expect(page.locator('.header')).toBeVisible();
+    expect(await page.evaluate(element => element === document.querySelector('.header'), header)).toBe(true);
     expect(errors).toEqual([]);
   });
 }
@@ -106,13 +159,14 @@ test('language and theme follow navigation; practice styles stay isolated', asyn
 
 test('a failed lazy download shows a recovery action', async ({ page }) => {
   await page.goto('/');
-  await expect(page.locator('.tool-card')).toHaveCount(3);
+  await expect(page.locator('.tool-card')).toHaveCount(4);
   await page.route('**/' + bundle('breaze').file, route => route.abort());
   await page.locator('a.tool-card[href="/breaze/"]').click();
   await expect(page.getByRole('alert')).toContainText('Could not open this page');
   await expect(page.getByRole('button', { name: 'Try again' })).toBeVisible();
-  await page.getByRole('link', { name: 'All tools' }).click();
-  await expect(page.locator('.tool-card')).toHaveCount(3);
+  await expect(page.locator('.header')).toBeVisible();
+  await page.getByRole('alert').getByRole('link', { name: 'All tools' }).click();
+  await expect(page.locator('.tool-card')).toHaveCount(4);
 });
 
 test('static hosting redirects slashless links, preserves queries and serves a helpful 404', async ({ page }) => {
@@ -122,7 +176,7 @@ test('static hosting redirects slashless links, preserves queries and serves a h
   expect((await page.goto('/missing-page/'))?.status()).toBe(404);
   await expect(page.getByRole('heading', { name: 'Page not found' })).toBeVisible();
   await page.getByRole('link', { name: 'All tools' }).click();
-  await expect(page.locator('.tool-card')).toHaveCount(3);
+  await expect(page.locator('.tool-card')).toHaveCount(4);
 });
 
 test('narrow screen and unavailable browser storage still allow navigation and practice', async ({ page }) => {

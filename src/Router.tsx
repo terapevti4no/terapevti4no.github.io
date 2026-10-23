@@ -6,6 +6,7 @@ import { usePreferences } from '@terapevti4no/ui';
 const Home = lazy(() => import('./App'));
 const Breaze = lazy(() => import('./practices/breaze/App'));
 const EmdrDot = lazy(() => import('./practices/emdrdot/App'));
+const Cloudbye = lazy(() => import('./practices/cloudbye/App'));
 const Underground = lazy(() => import('./practices/underground/App'));
 
 class PageErrorBoundary extends Component<{ children: ReactNode; lang: 'ru' | 'en' }, { failed: boolean }> {
@@ -53,6 +54,7 @@ export default function AppRouter() {
         <Route path="/" element={<Page name="home"><Home/></Page>}/>
         <Route path="/breaze" element={<Page name="breaze"><Breaze/></Page>}/>
         <Route path="/emdrdot" element={<Page name="emdrdot"><EmdrDot/></Page>}/>
+        <Route path="/cloudbye" element={<Page name="cloudbye"><Cloudbye/></Page>}/>
         <Route path="/underground" element={<Page name="underground"><Underground/></Page>}/>
         <Route path="*" element={<Page name="not-found"><NotFound/></Page>}/>
       </Routes>

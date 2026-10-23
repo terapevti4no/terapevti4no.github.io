@@ -358,3 +358,17 @@ button:focus-visible,a:focus-visible,input:focus-visible { outline:3px solid var
 @media(max-width:900px){.all-tools-link{margin-right:4px}.all-tools-link span{display:none}.all-tools-link{padding:8px}}
 
 .underground-mark{color:var(--accent);flex-shrink:0}.underground-prefix{font-weight:400;color:var(--muted)}
+
+/* Header sizing belongs to the shell and is available before practice CSS loads. */
+
+@media(max-width:560px){:where(.app-shell[data-tool=underground]) .header-with-tool .brand-pair{gap:9px}}
+@media(max-width:560px){:where(.app-shell[data-tool=underground]) .header-with-tool .brand-pair .brand{font-size:16px}}
+@media(max-width:560px){:where(.app-shell[data-tool=underground]) .header-with-tool .brand-mark{margin-right:6px}}
+@media(max-width:560px){:where(.app-shell[data-tool=underground]) .header-with-tool .terapevti4no-brand svg{width:24px;height:24px}}
+@media(max-width:560px){:where(.app-shell[data-tool=underground]) .underground-mark{width:24px;height:26px}}
+@media(max-width:380px){:where(.app-shell[data-tool=underground]) .header-with-tool .brand-pair .brand{font-size:14px}}
+@media(max-width:380px){:where(.app-shell[data-tool=underground]) .header-with-tool .brand-pair{gap:7px}}
+@media(max-width:380px){:where(.app-shell[data-tool=underground]) .header-with-tool .brand-separator{height:20px}}
+
+.cloudbye-mark{--cloudbye-sun:#c5a56b;flex-shrink:0}
+:root[data-theme=dark] .cloudbye-mark{--cloudbye-sun:#d6b779}

@@ -4,6 +4,7 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises';
 // refreshes use the same shell at every supported URL with an HTTP 200 response.
 const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
 const pages = {
+  cloudbye: ['cloudbye — мысли на облаках', 'Замечайте мысли и наблюдайте, как они проплывают мимо.'],
   breaze: ['Breaze — дыхательные практики', 'Дыхательные практики с готовыми ритмами и своими настройками.'],
   emdrdot: ['EMDR Dot — визуальная стимуляция', 'Движущаяся точка и настраиваемый таймер для практики.'],
   underground: ['Underground — практика 5–4–3–2–1', 'Практика внимания к тому, что вокруг.'],

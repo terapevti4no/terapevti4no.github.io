@@ -1,11 +1,11 @@
 import { useRef, useState, type Dispatch, type SetStateAction } from 'react';
-import { Footer, Icon, InfoNote, PageIntro, PageLayout, type Lang, type Theme } from '@terapevti4no/ui';
+import { Footer, Icon, InfoNote, PageIntro, PageLayout, type Lang } from '@terapevti4no/ui';
 import { presets } from './presets';
 import { cycleDuration, limits, phaseOrder, sanitize, type Settings } from './session';
 import type { Messages } from './i18n';
 
-type Props = { settings: Settings; setSettings: Dispatch<SetStateAction<Settings>>; lang: Lang; setLang: (lang: Lang) => void; theme: Theme; setTheme: (theme: Theme) => void; t: Messages; onStart: (settings: Settings, name: string, id: string) => void };
-export default function SettingsScreen({ settings, setSettings, lang, setLang, theme, setTheme, t, onStart }: Props) {
+type Props = { settings: Settings; setSettings: Dispatch<SetStateAction<Settings>>; lang: Lang; t: Messages; onStart: (settings: Settings, name: string, id: string) => void };
+export default function SettingsScreen({ settings, setSettings, lang, t, onStart }: Props) {
   const [customOpen, setCustomOpen] = useState(false);
   const [drafts, setDrafts] = useState<Partial<Record<keyof Settings, string>>>({});
   const common = useRef<HTMLFormElement>(null);
@@ -15,7 +15,7 @@ export default function SettingsScreen({ settings, setSettings, lang, setLang, t
       onBlur={event => { const value = event.currentTarget.valueAsNumber; const next = sanitize({ ...settings, [key]: Number.isFinite(value) ? value : settings[key] }); event.currentTarget.value = String(next[key]); setSettings(next); setDrafts(current => { const copy = { ...current }; delete copy[key]; return copy; }); }}/>{key !== 'cycles' && <span className="unit">{t.sec}</span>}</div>{hint && <small>{hint}</small>}
   </label>;
   const start = (next: Settings, name: string, id: string) => { if (common.current?.reportValidity()) onStart(sanitize(next), name, id); };
-  return <PageLayout lang={lang} theme={theme} onLanguageChange={setLang} onThemeChange={setTheme} tool="breaze" homeHref="/" toolHref="/breaze/" footer={<Footer brand="BREAZE">{t.footer}</Footer>}>
+  return <PageLayout footer={<Footer brand="BREAZE">{t.footer}</Footer>}>
     <PageIntro eyebrow={t.eyebrow} title={t.title} description={t.intro}/>
     <form className="session-options ui-card" ref={common} onSubmit={event => event.preventDefault()}>
       {field('cycles', t.cycles, t.cycleHelp)}{field('countdown', t.countdown, t.countdownHelp)}

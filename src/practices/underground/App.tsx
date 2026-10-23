@@ -1,3 +1,4 @@
+import { useImmersiveMode } from '../../SiteShell';
 import './style.css';
 import { useEffect, useRef, useState } from 'react';
 import { Footer, Icon, InfoNote, PageIntro, PageLayout, usePreferences } from '@terapevti4no/ui';
@@ -22,9 +23,10 @@ const copy = {
 };
 
 export default function App() {
- const {lang,setLang,theme,setTheme}=usePreferences();
+ const {lang}=usePreferences();
  const t=copy[lang];
  const [screen,setScreen]=useState<'intro'|'practice'|'done'>('intro');
+ useImmersiveMode(screen !== 'intro');
  const [step,setStep]=useState(0);
  const [marks,setMarks]=useState<boolean[][]>(()=>[5,4,3,2,1].map(n=>Array<boolean>(n).fill(false)));
  const heading=useRef<HTMLHeadingElement>(null);
@@ -71,7 +73,7 @@ export default function App() {
   </section>}
   {screen==='intro' && <InfoNote>{t.note}</InfoNote>}
  </>;
- return screen==='intro' ? <PageLayout lang={lang} theme={theme} onLanguageChange={setLang} onThemeChange={setTheme} tool="underground" homeHref="/" toolHref="/underground/" footer={<Footer brand="UNDERGROUND">{t.footer}</Footer>}>{content}</PageLayout> : <main className="grounding-practice">
+ return screen==='intro' ? <PageLayout footer={<Footer brand="UNDERGROUND">{t.footer}</Footer>}>{content}</PageLayout> : <main className="grounding-practice">
   <div className="practice-content">{content}</div>
   {screen==='practice' && <div className="practice-controls"><div><button type="button" onClick={next}>{t.skip}</button><button type="button" onClick={()=>setScreen('intro')}>{t.exit}</button></div><small>{t.controls}</small></div>}
  </main>;

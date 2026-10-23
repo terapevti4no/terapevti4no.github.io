@@ -32,6 +32,12 @@ first visit. React, the router and shared UI load once. Practice styles are scop
 to `.page-breaze`, `.page-emdrdot` or `.page-underground` so previously downloaded
 CSS cannot affect other practices. Use these scopes for new styles too.
 
+`src/SiteShell.tsx` owns the persistent header outside the route and loading/error
+boundaries. Routes update its tool branding without remounting the header or its
+controls. Page layouts contain only page content and the footer. Exercises call
+`useImmersiveMode` to hide the mounted header; exiting or navigating away restores
+it. Header styles live in the shared UI so they are ready before practice chunks.
+
 `npm run build` also generates a real `index.html` under each practice directory.
 This preserves direct links, refreshes, query strings and successful HTTP status
 codes on GitHub Pages without hash URLs or a redirect workaround. Unknown paths

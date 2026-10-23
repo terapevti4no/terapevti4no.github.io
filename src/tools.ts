@@ -56,4 +56,11 @@ export const tools: Tool[] = [
       },
     },
   },
+  {
+    id: 'cloudbye', name: 'cloudbye', logo: 'cloudbye', href: '/cloudbye/',
+    copy: {
+      ru: { category: 'Наблюдение за мыслями', description: 'Поместите мысли на облака и наблюдайте, как они проплывают мимо. Можно добавлять новые прямо в практике.', features: ['В своём темпе', 'Без сохранения мыслей'] },
+      en: { category: 'Observing thoughts', description: 'Place your thoughts on clouds and watch them drift by. Add new thoughts during the practice.', features: ['At your own pace', 'Thoughts stay private'] },
+    },
+  },
 ];
