@@ -1,7 +1,7 @@
 import { useImmersiveMode } from '../../SiteShell';
 import './style.css';
 import { useEffect, useRef, useState } from 'react';
-import { Footer, Icon, InfoNote, PageIntro, PageLayout, usePreferences } from '@terapevti4no/ui';
+import { Footer, Icon, InfoNote, PageIntro, PageLayout, PracticeControl, usePreferences } from '@terapevti4no/ui';
 
 const copy = {
  ru: {
@@ -75,6 +75,6 @@ export default function App() {
  </>;
  return screen==='intro' ? <PageLayout footer={<Footer brand="UNDERGROUND">{t.footer}</Footer>}>{content}</PageLayout> : <main className="grounding-practice">
   <div className="practice-content">{content}</div>
-  {screen==='practice' && <div className="practice-controls"><div><button type="button" onClick={next}>{t.skip}</button><button type="button" onClick={()=>setScreen('intro')}>{t.exit}</button></div><small>{t.controls}</small></div>}
+  {screen==='practice' && <div className="practice-controls"><div><PracticeControl action="skip" label={t.skip} onClick={next}/><PracticeControl action="close" label={t.exit} onClick={()=>setScreen('intro')}/></div><small>{t.controls}</small></div>}
  </main>;
 }

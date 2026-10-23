@@ -1,3 +1,4 @@
+import { PracticeControl } from '@terapevti4no/ui';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { frameAt, SessionClock, type Settings } from './session';
 import type { Messages } from './i18n';
@@ -63,7 +64,7 @@ export default function Practice({ settings, name, t, onExit }: Props) {
       </>}
     </section>
     {!finished && <div className={`practice-controls${visible || paused || frame.phase === 'countdown' ? ' is-visible' : ''}`} onFocus={reveal}>
-      <div><button type="button" onClick={togglePause}>{paused ? t.resume : t.pause}</button><button type="button" onClick={onExit}>{t.stop}</button></div>
+      <div><PracticeControl action={paused ? 'play' : 'pause'} label={paused ? t.resume : t.pause} aria-pressed={paused} onClick={togglePause}/><PracticeControl action="close" label={t.stop} onClick={onExit}/></div>
       <small>{t.controls}</small>
     </div>}
   </main>;

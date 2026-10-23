@@ -194,3 +194,42 @@ test('narrow screen and unavailable browser storage still allow navigation and p
   await page.keyboard.press('Space');
   await expect(page.locator('.marks button[aria-pressed="true"]')).toHaveCount(1);
 });
+
+for (const name of practices) {
+  test(`${name}: shared icon controls have tooltips and still pause, resume and close`, async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(`/${name}/`);
+    await page.getByRole('button', { name: 'RU', exact: true }).click();
+    if (name === 'breaze') await page.locator('.preset-card').first().click();
+    else if (name === 'emdrdot') await page.locator('.start-button').click();
+    else await page.getByRole('button', { name: 'Начать', exact: true }).click();
+    const controls = page.locator('.practice-controls');
+    const close = controls.getByRole('button', { name: 'Завершить', exact: true });
+    await expect(close).toHaveAttribute('title', 'Завершить');
+    await expect(close).toHaveText('');
+    await expect(close).toHaveCSS('width', '44px');
+    await expect(close).toHaveCSS('height', '44px');
+    if (name !== 'underground') {
+      const pause = controls.getByRole('button', { name: 'Пауза', exact: true });
+      await expect(pause).toHaveAttribute('title', 'Пауза');
+      await expect(pause).toHaveText('');
+      await expect(pause).toHaveCSS('width', '44px');
+      await pause.click();
+      const resume = controls.getByRole('button', { name: 'Продолжить', exact: true });
+      await expect(resume).toHaveAttribute('title', 'Продолжить');
+      await expect(resume).toHaveAttribute('aria-pressed', 'true');
+      await resume.click();
+      await expect(pause).toHaveAttribute('aria-pressed', 'false');
+    } else {
+      const skip = controls.getByRole('button', { name: 'Пропустить', exact: true });
+      await expect(skip).toHaveAttribute('title', 'Пропустить');
+      await expect(skip).toHaveText('');
+      await expect(skip).toHaveCSS('width', '44px');
+      await skip.click();
+      await expect(page.locator('.marks button[aria-pressed]')).toHaveCount(4);
+    }
+    await close.click();
+    await expect(page.locator('.header')).toBeVisible();
+    await expect(page.locator(`.page-${name} h1`)).toBeVisible();
+  });
+}

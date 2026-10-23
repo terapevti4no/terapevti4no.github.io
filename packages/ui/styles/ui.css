@@ -372,3 +372,22 @@ button:focus-visible,a:focus-visible,input:focus-visible { outline:3px solid var
 
 .cloudbye-mark{--cloudbye-sun:#c5a56b;flex-shrink:0}
 :root[data-theme=dark] .cloudbye-mark{--cloudbye-sun:#d6b779}
+
+/* One size and treatment for exercise controls, including touch layouts. */
+.app-shell .ui-practice-control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+.app-shell .ui-practice-control:hover { background: var(--soft); }

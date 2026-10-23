@@ -11,13 +11,21 @@ const labels = {
 };
 const classes = (...values: (string | undefined | false)[]) => values.filter(Boolean).join(' ');
 
-export function Icon({ name, ...props }: ComponentPropsWithoutRef<'svg'> & { name: 'sun' | 'moon' | 'info' | 'expand' | 'arrow' }) {
+export function Icon({ name, ...props }: ComponentPropsWithoutRef<'svg'> & { name: 'sun' | 'moon' | 'info' | 'expand' | 'arrow' | 'pause' | 'play' | 'close' | 'skip' }) {
   return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
     {name === 'sun' ? <><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></> :
       name === 'moon' ? <path d="M20 14a8 8 0 0 1-10-10 8 8 0 1 0 10 10Z"/> :
       name === 'info' ? <><circle cx="12" cy="12" r="9"/><path d="M12 10v7m0-11v2"/></> :
+      name === 'pause' ? <path d="M8 5v14m8-14v14" strokeWidth="2.4"/> :
+      name === 'play' ? <path d="m8 5 11 7-11 7Z"/> :
+      name === 'skip' ? <path d="m5 5 10 7-10 7ZM19 5v14"/> :
+      name === 'close' ? <path d="m6 6 12 12M18 6 6 18"/> :
       name === 'expand' ? <path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/> : <path d="M4 12h16m-6-6 6 6-6 6"/>}
   </svg>;
+}
+
+export function PracticeControl({ action, label, className, ...props }: ComponentPropsWithoutRef<'button'> & { action: 'pause' | 'play' | 'close' | 'skip'; label: string }) {
+  return <button {...props} type="button" className={classes('ui-practice-control', className)} aria-label={label} title={label}><Icon name={action} width="20" height="20"/></button>;
 }
 
 export function BrandLogo({ lang, href, className, ...props }: ComponentPropsWithoutRef<'a'> & { lang: Lang }) {
