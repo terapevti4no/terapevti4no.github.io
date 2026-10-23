@@ -1,0 +1,462 @@
+:where(.page-emdrdot) .card-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+:where(.page-emdrdot) .card-heading h2 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -.3px;
+}
+:where(.page-emdrdot) .text-button {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+:where(.page-emdrdot) .card-heading .text-button {
+  color: var(--muted);
+  text-decoration: none;
+}
+:where(.page-emdrdot) .mode-field {
+  padding: 0;
+  margin: 0 0 24px;
+  border: 0;
+  min-width: 0;
+}
+:where(.page-emdrdot) .mode-field legend,:where(.page-emdrdot) .field>span {
+  font-size: 12px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 9px;
+}
+:where(.page-emdrdot) .mode-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--soft);
+  padding: 4px;
+  border-radius: 10px;
+  gap: 4px;
+}
+:where(.page-emdrdot) .mode-toggle button {
+  font-size: 12px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--muted);
+  padding: 10px 5px;
+}
+:where(.page-emdrdot) .mode-toggle button[aria-pressed=true] {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--border);
+  box-shadow: 0 2px 4px #00000004;
+  font-weight: 700;
+}
+:where(.page-emdrdot) .field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+  row-gap: 20px;
+}
+:where(.page-emdrdot) .field {
+  min-width: 0;
+}
+:where(.page-emdrdot) .number-wrap {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+:where(.page-emdrdot) .number-wrap input {
+  min-width: 0;
+  width: 100%;
+  height: 44px;
+  padding: 10px 44px 10px 13px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--input);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+:where(.page-emdrdot) .number-wrap input::-webkit-inner-spin-button {
+  appearance: none;
+}
+:where(.page-emdrdot) .number-wrap input:hover {
+  border-color: var(--muted);
+}
+:where(.page-emdrdot) .unit {
+  position: absolute;
+  right: 13px;
+  pointer-events: none;
+  color: var(--muted);
+  font-size: 11px;
+}
+:where(.page-emdrdot) .field small {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-top: 6px;
+}
+:where(.page-emdrdot) .summary {
+  display: flex;
+  gap: 32px;
+  background: var(--soft);
+  padding: 16px 18px;
+  border-radius: 10px;
+  margin: 24px 0;
+}
+:where(.page-emdrdot) .summary>div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+:where(.page-emdrdot) .summary span {
+  color: var(--muted);
+  font-size: 10px;
+}
+:where(.page-emdrdot) .summary strong {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+}
+:where(.page-emdrdot) .summary small {
+  font-weight: 500;
+  font-size: 11px;
+  color: var(--muted);
+}
+:where(.page-emdrdot) .fullscreen-hint {
+  display: flex;
+  gap: 11px;
+  align-items: flex-start;
+  margin-bottom: 22px;
+  color: var(--muted);
+}
+:where(.page-emdrdot) .fullscreen-hint>svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  width: 16px;
+}
+:where(.page-emdrdot) .fullscreen-hint p {
+  margin: 0 0 7px;
+  font-size: 11px;
+  line-height: 1.7;
+  max-width: 390px;
+}
+:where(.page-emdrdot) .primary {
+  border: 0;
+  border-radius: 10px;
+  background: var(--accent);
+  color: var(--surface);
+  padding: 15px 22px;
+  font-size: 13px;
+  font-weight: 700;
+  transition: background .15s;
+}
+:where(.page-emdrdot) .primary:hover {
+  background: var(--accent-hover);
+}
+:where(.page-emdrdot) .start-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+:where(.page-emdrdot) .start-button svg {
+  position: absolute;
+  right: 18px;
+}
+:where(.page-emdrdot) .mode-note,:where(.page-emdrdot) .error {
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 14px 0 0;
+}
+:where(.page-emdrdot) .error {
+  margin-bottom: 15px;
+}
+:where(.page-emdrdot) .practice {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: var(--bg);
+  touch-action: manipulation;
+}
+:where(.page-emdrdot) .moving-ball {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--ball);
+  visibility: hidden;
+  will-change: transform;
+}
+:where(.page-emdrdot) .practice-message {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 24px 24px 150px;
+  pointer-events: none;
+}
+:where(.page-emdrdot) .practice-message button {
+  pointer-events: auto;
+  margin-top: 22px;
+}
+:where(.page-emdrdot) .practice-message h1 {
+  font-size: clamp(24px,4vw,38px);
+  font-weight: 500;
+  letter-spacing: -.7px;
+  margin: 5px 0 14px;
+}
+:where(.page-emdrdot) .practice-message p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 0;
+}
+:where(.page-emdrdot) .count-number {
+  font-size: 72px;
+  font-weight: 400;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+}
+:where(.page-emdrdot) .practice-controls {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 14px;
+  opacity: 0;
+  transition: opacity .25s;
+  pointer-events: none;
+  min-width: 280px;
+}
+:where(.page-emdrdot) .practice-controls.is-visible,:where(.page-emdrdot) .practice-controls:focus-within {
+  opacity: 1;
+  pointer-events: auto;
+}
+:where(.page-emdrdot) .practice-controls>span {
+  font-size: 11px;
+  color: var(--muted);
+}
+:where(.page-emdrdot) .practice-controls>div {
+  display: flex;
+  gap: 10px;
+}
+:where(.page-emdrdot) .practice-controls button {
+  padding: 10px 20px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  font-size: 12px;
+}
+:where(.page-emdrdot) .practice-controls button:hover {
+  background: var(--soft);
+}
+:where(.page-emdrdot) .practice-controls small {
+  font-size: 10px;
+  color: var(--muted);
+}
+:where(.page-emdrdot) .complete-symbol {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--soft);
+  color: var(--accent);
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+@media (max-width:560px) {
+  :where(.page-emdrdot) .field-grid {
+    column-gap: 14px;
+  }
+  :where(.page-emdrdot) .field>span {
+    font-size: 11px;
+  }
+  :where(.page-emdrdot) .summary {
+    gap: 25px;
+    padding: 15px;
+  }
+  :where(.page-emdrdot) .summary:has(>div:nth-child(3)) {
+    gap: 16px;
+  }
+  :where(.page-emdrdot) .summary span {
+    font-size: 9px;
+  }
+  :where(.page-emdrdot) .practice-message {
+    padding-bottom: 160px;
+  }
+  :where(.page-emdrdot) .moving-ball {
+    width: 25px;
+    height: 25px;
+  }
+}
+@media (max-height: 950px), (display-mode: fullscreen) {
+  :where(.page-emdrdot) .card-heading {
+    margin-bottom: 12px;
+  }
+  :where(.page-emdrdot) .mode-field {
+    margin-bottom: 12px;
+  }
+  :where(.page-emdrdot) .mode-toggle button {
+    padding: 8px 5px;
+    min-height: 36px;
+  }
+  :where(.page-emdrdot) .field-grid {
+    row-gap: 12px;
+  }
+  :where(.page-emdrdot) .summary {
+    margin: 12px 0;
+    padding: 12px 16px;
+  }
+  :where(.page-emdrdot) .fullscreen-hint {
+    margin-bottom: 12px;
+  }
+  :where(.page-emdrdot) .fullscreen-hint p {
+    line-height: 1.5;
+    margin-bottom: 4px;
+  }
+}
+@media (min-width: 620px) and (max-height: 950px), (min-width: 620px) and (display-mode: fullscreen) {
+  :where(.page-emdrdot) .field-grid {
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    column-gap: 16px;
+  }
+}
+@media (max-height: 740px) {
+  :where(.page-emdrdot) .field-grid {
+    row-gap: 10px;
+  }
+  :where(.page-emdrdot) .field>span,:where(.page-emdrdot) .mode-field legend {
+    margin-bottom: 6px;
+  }
+  :where(.page-emdrdot) .field small {
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+  :where(.page-emdrdot) .summary {
+    padding: 10px 14px;
+    margin: 10px 0;
+  }
+  :where(.page-emdrdot) .summary>div {
+    gap: 4px;
+  }
+  :where(.page-emdrdot) .mode-note {
+    margin-top: 8px;
+    line-height: 1.5;
+  }
+  :where(.page-emdrdot) .fullscreen-hint {
+    margin-bottom: 10px;
+  }
+}
+@media (max-width: 560px) and (max-height: 950px), (max-width: 560px) and (display-mode: fullscreen) {
+  :where(.page-emdrdot) .summary:has(>div:nth-child(3)) {
+    gap: 12px;
+    justify-content: space-between;
+  }
+}
+:where(.page-emdrdot) .fullscreen-hint>div {
+  min-width: 0;
+}
+:where(.page-emdrdot) .fullscreen-hint p {
+  max-width: none;
+  margin: 0;
+}
+:where(.page-emdrdot) .fullscreen-hint .text-button {
+  display: inline;
+  white-space: nowrap;
+}
+:where(.page-emdrdot) .orientation-hint {
+  display: none;
+}
+@media (max-width:600px) and (orientation:portrait) and (pointer:coarse) {
+  :where(.page-emdrdot) .fullscreen-hint .orientation-hint {
+    display: block;
+    margin-top: 8px;
+    color: var(--accent);
+  }
+}
+@media (pointer:coarse) and (max-width:1024px) {
+  :where(.page-emdrdot) .practice {
+    inset: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+  :where(.page-emdrdot) .practice-controls small {
+    display: none;
+  }
+  :where(.page-emdrdot) .practice-controls {
+    bottom: 16px;
+    gap: 8px;
+    min-width: 0;
+    width: 100%;
+    padding: 0 16px;
+  }
+  :where(.page-emdrdot) .practice-controls button {
+    min-height: 44px;
+    min-width: 100px;
+  }
+  :where(.page-emdrdot) .practice-message {
+    padding: 16px 20px 110px;
+    overflow-y: auto;
+  }
+  :where(.page-emdrdot) .practice.is-done .practice-message {
+    padding: 20px;
+    pointer-events: auto;
+  }
+  :where(.page-emdrdot) .number-wrap input {
+    font-size: 16px;
+  }
+}
+@media (pointer:coarse) and (max-width:1024px) and (max-height:500px) {
+  :where(.page-emdrdot) .practice-message {
+    padding: 8px 16px 88px;
+  }
+  :where(.page-emdrdot) .practice-message .eyebrow {
+    margin-bottom: 4px;
+  }
+  :where(.page-emdrdot) .practice-message h1 {
+    font-size: 24px;
+    margin: 4px 0 8px;
+  }
+  :where(.page-emdrdot) .count-number {
+    font-size: 44px;
+    line-height: 1.1;
+  }
+  :where(.page-emdrdot) .practice-message button {
+    margin-top: 8px;
+    min-height: 44px;
+    padding: 10px 20px;
+  }
+  :where(.page-emdrdot) .practice-controls {
+    bottom: 8px;
+    gap: 4px;
+  }
+  :where(.page-emdrdot) .complete-symbol {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+    margin-bottom: 8px;
+    flex-shrink: 0;
+  }
+}

@@ -5,21 +5,14 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
-  schedule:
-    - cron: '7,22,37,52 * * * *'
 permissions:
   contents: read
 concurrency:
   group: pages-${{ github.ref }}
-  cancel-in-progress: ${{ github.event_name != 'schedule' }}
+  cancel-in-progress: true
 jobs:
   build:
-    if: github.event_name != 'schedule' || vars.UI_AUTO_UPDATE != 'false'
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    outputs:
-      deploy: ${{ steps.decision.outputs.deploy }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -27,41 +20,15 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      - name: Look for a new UI release
-        id: ui
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: npm run ui:update -- --latest
-      - name: Decide whether a build is needed
-        id: decision
-        env:
-          EVENT: ${{ github.event_name }}
-          CHANGED: ${{ steps.ui.outputs.changed }}
-        run: |
-          if [[ "$EVENT" == "schedule" ]]; then
-            echo "deploy=$CHANGED" >> "$GITHUB_OUTPUT"
-          else
-            echo 'deploy=true' >> "$GITHUB_OUTPUT"
-          fi
+      - run: npm test
       - run: npm run build
-        if: steps.decision.outputs.deploy == 'true'
-      - name: Commit the verified UI dependency update
-        if: steps.ui.outputs.changed == 'true' && github.ref == 'refs/heads/main'
-        env:
-          UI_VERSION: ${{ steps.ui.outputs.version }}
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add package.json package-lock.json
-          git commit -m "chore: update UI to $UI_VERSION"
-          git push origin HEAD:main
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
       - uses: actions/upload-pages-artifact@v3
-        if: steps.decision.outputs.deploy == 'true'
         with:
           path: dist
   deploy:
-    if: needs.build.outputs.deploy == 'true' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
     permissions:

@@ -2,9 +2,10 @@ import { useEffect } from 'react';
 import { Footer, InfoNote, PageIntro, PageLayout, usePreferences } from '@terapevti4no/ui';
 import { messages } from './i18n';
 import { MoreToolsNote, ToolCatalog } from './ToolCatalog';
+import './style.css';
 
 export default function HomePage() {
-  const { lang, setLang, theme, setTheme } = usePreferences({ storageKey: 'terapevti4no:v1', fallbackKeys: ['emdrdot:v1'] });
+  const { lang, setLang, theme, setTheme } = usePreferences();
   const t = messages[lang];
   useEffect(() => {
     document.title = t.pageTitle;

@@ -10,7 +10,7 @@ export type Tool = {
 export const tools: Tool[] = [
   {
     id: 'emdrdot', name: 'EMDR Dot', logo: 'emdrdot',
-    href: 'https://terapevti4no.github.io/emdrdot/',
+    href: '/emdrdot/',
     copy: {
       ru: {
         category: 'Визуальная стимуляция',
@@ -26,7 +26,7 @@ export const tools: Tool[] = [
   },
   {
     id: 'breaze', name: 'Breaze', logo: 'breaze',
-    href: 'https://terapevti4no.github.io/breaze/',
+    href: '/breaze/',
     copy: {
       ru: {
         category: 'Дыхательные практики',
@@ -42,7 +42,7 @@ export const tools: Tool[] = [
   },
   {
     id: 'underground', name: 'Underground', logo: 'underground',
-    href: 'https://terapevti4no.space/underground/',
+    href: '/underground/',
     copy: {
       ru: {
         category: 'Практика заземления',

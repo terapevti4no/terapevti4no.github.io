@@ -1,38 +1,81 @@
 # terapevti4no
 
-React + TypeScript + Vite tool directory at https://terapevti4no.github.io/.
+One React + TypeScript + Vite application for https://terapevti4no.space/.
+The catalog and practices share React, routing, preferences and a local UI package.
 
 ## Development
+
+Use Node 24 (also used in CI):
 
 ```sh
 npm ci
 npm run dev
 ```
 
-Open http://127.0.0.1:4173/. Build: `npm run build`; production preview: `npm run preview`. Node 22+; CI uses Node 24. The deployed output is static and needs no application server.
+Open http://127.0.0.1:4173/. Production build: `npm run build`; preview: `npm run preview`.
 
-## Add an instrument
-
-Add one record to `src/tools.ts`: id, name, URL and Russian/English category, description and feature list. `ToolCatalog` renders a `ToolCard` for each record. The EMDR wordmark comes from the UI library; instruments without a custom logo can use their name. Page translations are in `src/i18n.ts`, catalog-specific styles in `src/style.css`.
-
-## Shared UI
-
-`@terapevti4no/ui` supplies the layout, header, logos, theme/language controls, text-only page intro, content container, information note and footer. It is installed from a versioned npm archive in [GitHub Releases](https://github.com/terapevti4no/ui/releases), with integrity pinned in `package-lock.json`. Do not copy library code or SVG paths into this project. There is no vendor directory.
-
-```sh
-npm run ui:check
-npm run ui:update -- --latest
-npm run ui:update -- --version 0.2.1
+```text
+src/App.tsx               Catalog page
+src/Router.tsx            React Router routes and dynamic imports
+src/practices/breaze/     Breathing practice, settings and timer tests
+src/practices/emdrdot/    Visual stimulation, settings and timer tests
+src/practices/underground/ Grounding practice
+packages/ui/              Shared components, CSS, preferences and brand assets
 ```
 
-Normal builds and site visits use the installed package. Only an explicit dependency update needs GitHub access. See the UI repository for component APIs and release instructions.
+## Loading and navigation
 
-## Preferences
+React Router uses browser history and preserves the existing URLs: `/`, `/breaze/`,
+`/emdrdot/`, `/underground/`. Internal links navigate without a document reload.
+Each page is imported with `React.lazy`; its JavaScript and CSS download only on
+first visit. React, the router and shared UI load once. Practice styles are scoped
+to `.page-breaze`, `.page-emdrdot` or `.page-underground` so previously downloaded
+CSS cannot affect other practices. Use these scopes for new styles too.
 
-Existing `terapevti4no:v1` language/theme records are preserved. On first use, missing fields fall back to `emdrdot:v1`, then browser preferences. The shared hook merges fields and never changes the EMDR timer settings. A shared-generated blocking head script applies the saved theme before first paint. The page also works when browser storage is disabled.
+`npm run build` also generates a real `index.html` under each practice directory.
+This preserves direct links, refreshes, query strings and successful HTTP status
+codes on GitHub Pages without hash URLs or a redirect workaround. Unknown paths
+use `404.html` and display a link to the catalog.
 
-## Publication and automatic UI updates
+## Shared UI and preferences
 
-GitHub Pages uses **GitHub Actions**, serving the Vite `dist` artifact. Pushes and pull requests run the build; only `main` deploys. The workflow also checks for new stable UI releases four times an hour, builds the updated project, commits its package/lockfile update and deploys in the same run. Scheduled timing is controlled by GitHub and may be delayed. An unsuccessful update does not get committed or published.
+`@terapevti4no/ui` is an npm workspace in `packages/ui`; edit it directly. No UI
+release, GitHub archive or scheduled dependency update is needed. Assets and the
+pre-paint theme bootstrap come from this local package.
 
-Run **Build and deploy** (`pages.yml`) manually to check/update/deploy immediately. Set repository variable `UI_AUTO_UPDATE=false` to pause scheduled checks; pushes/manual runs still work. For a rollback, disable scheduled updates, install an earlier compatible UI version, verify and commit the package files.
+A single `PreferencesProvider` keeps language and theme consistent during
+navigation, even if browser storage is unavailable. It stores them in
+`terapevti4no:v1`, falling back to legacy `emdrdot:v1`, `breaze:v1` and
+`underground:v1` fields when missing, then browser preferences. Existing practice
+settings stay under their original keys. On another origin, browser storage
+remains separate, as before. Active practice progress stays in memory; leaving a
+practice stops it and returning opens its settings.
+
+## Add a practice
+
+1. Add its component and scoped CSS in `src/practices/<name>/`.
+2. Add a dynamic import and route in `src/Router.tsx`.
+3. Add the catalog record with a local URL in `src/tools.ts`.
+4. Add its static entry metadata in `scripts/build-pages.mjs` and navigation tests.
+
+## Checks and publication
+
+```sh
+npm test
+npm run build
+npx playwright install chromium
+npm run test:e2e
+```
+
+Browser tests use a static server with the same directory/404 behavior as Pages.
+They check dynamic JS/CSS requests, direct links, refreshes, browser history,
+shared preferences, legacy timer settings, keyboard controls, error recovery and
+narrow screens. To use an existing Chromium installation, set
+`PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to its executable.
+
+GitHub Actions runs checks for pushes and PRs. Only `main` deploys the complete
+`dist` artifact to the existing GitHub Pages site and custom domain. No schedule
+or cross-repository UI updates are required.
+
+The original `breaze`, `emdrdot`, `underground` and `ui` repositories are retained.
+See [MIGRATION.md](MIGRATION.md) for the imported source versions and cutover.

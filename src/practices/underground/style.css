@@ -1,0 +1,74 @@
+:where(.page-underground) .welcome,:where(.page-underground) .step-card,:where(.page-underground) .completion{text-align:center}
+:where(.page-underground) .sense-overview{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:12px 0 24px}
+:where(.page-underground) .sense-overview>div{display:flex;align-items:center;flex-direction:column;gap:10px}:where(.page-underground) .sense-overview span{font-size:34px;font-weight:400;color:var(--accent)}:where(.page-underground) .sense-overview small{font-size:10px;color:var(--muted)}
+:where(.page-underground) .welcome-copy,:where(.page-underground) .step-hint{font-size:13px;line-height:1.85;color:var(--muted);max-width:440px;margin:0 auto 28px}
+:where(.page-underground) .primary{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;border:0;border-radius:10px;background:var(--accent);color:var(--surface);padding:15px 22px;font:inherit;font-size:13px;font-weight:700}:where(.page-underground) .primary:hover{background:var(--accent-hover)}
+:where(.page-underground) .text-button{font:inherit;font-size:11px;line-height:1.5;color:var(--muted);border:0;background:transparent;padding:10px 0}:where(.page-underground) .text-button:hover{color:var(--accent)}
+:where(.page-underground) .step-card .eyebrow{margin-top:12px}:where(.page-underground) .step-card h1,:where(.page-underground) .completion h1{font-size:26px;font-weight:500;line-height:1.35;letter-spacing:-.7px;margin:0 auto 18px;max-width:440px}:where(.page-underground) .step-card h1:focus,:where(.page-underground) .completion h1:focus{outline:none}
+:where(.page-underground) .marks{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin:28px 0 18px}:where(.page-underground) .marks button{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;border:1px solid var(--border);background:var(--input);color:var(--muted);font:inherit;font-size:14px;transition:background .2s,border-color .2s}:where(.page-underground) .marks button:hover{border-color:var(--accent)}:where(.page-underground) .marks .checked{background:var(--soft);color:var(--accent);border-color:var(--accent)}
+:where(.page-underground) .mark-hint{font-size:11px;color:var(--muted);line-height:1.7;margin:0}:where(.page-underground) .mark-count{font-size:10px;color:var(--accent);margin:9px 0 28px;font-variant-numeric:tabular-nums}:where(.page-underground) .step-actions{display:flex;justify-content:space-between;margin-top:8px}:where(.page-underground) .completion-mark{color:var(--accent);margin:16px 0 24px}:where(.page-underground) .home-button{margin-top:12px}
+@media(max-width:560px){:where(.page-underground) .sense-overview{gap:4px}:where(.page-underground) .sense-overview small,:where(.page-underground) .step-track small{font-size:9px}:where(.page-underground) .marks{gap:9px}:where(.page-underground) .marks button{width:44px;height:44px}:where(.page-underground) .step-card h1,:where(.page-underground) .completion h1{font-size:24px}:where(.page-underground) .welcome-copy,:where(.page-underground) .step-hint{font-size:12px}:where(.page-underground) .header-with-tool .brand-pair{gap:9px}:where(.page-underground) .header-with-tool .brand-pair .brand{font-size:16px}:where(.page-underground) .header-with-tool .brand-mark{margin-right:6px}:where(.page-underground) .header-with-tool .terapevti4no-brand svg{width:24px;height:24px}:where(.page-underground) .underground-mark{width:24px;height:26px}}
+@media(max-width:380px){:where(.page-underground) .header-with-tool .brand-pair .brand{font-size:14px}:where(.page-underground) .header-with-tool .brand-pair{gap:7px}:where(.page-underground) .header-with-tool .brand-separator{height:20px}}
+
+:where(.page-underground) .grounding-practice{min-height:100svh;display:flex;flex-direction:column;background:var(--bg);padding:32px 24px max(24px,env(safe-area-inset-bottom))}
+:where(.page-underground) .practice-content{flex:1;display:flex;align-items:center;justify-content:center;padding:24px 0 40px}
+:where(.page-underground) .practice-content>.step-card,:where(.page-underground) .practice-content>.completion{width:100%;max-width:520px}
+:where(.page-underground) .session-progress{font-size:10px;color:var(--muted);margin:0 0 24px}
+:where(.page-underground) .practice-content .step-card h1{font-size:clamp(26px,4vw,36px);max-width:520px}
+:where(.page-underground) .practice-content .primary{max-width:300px;margin:0 auto;justify-content:space-between}
+:where(.page-underground) .step-actions{justify-content:center}
+:where(.page-underground) .practice-controls{display:flex;justify-content:center;gap:10px;flex-shrink:0}
+:where(.page-underground) .practice-controls button{padding:10px 20px;min-height:44px;border:1px solid var(--border);border-radius:8px;background:var(--surface);font:inherit;font-size:12px;color:var(--ink)}
+:where(.page-underground) .practice-controls button:hover{background:var(--soft)}
+@media(max-height:600px){:where(.page-underground) .grounding-practice{padding-top:16px;padding-bottom:16px}:where(.page-underground) .practice-content{padding:0 0 16px}:where(.page-underground) .session-progress{margin-bottom:12px}:where(.page-underground) .practice-content .step-hint{margin-bottom:16px}:where(.page-underground) .practice-content .marks{margin-top:16px}:where(.page-underground) .practice-content .mark-count{margin-bottom:16px}}
+
+:where(.page-underground) .practice-content .marks{flex-wrap:nowrap;gap:clamp(6px,1.5vw,14px)}
+:where(.page-underground) .practice-content .marks button{width:clamp(48px,calc((100vw - 72px)/5),92px);height:auto;aspect-ratio:1;flex-shrink:0;font-size:clamp(15px,2.5vw,20px)}
+:where(.page-underground) .practice-content .marks button svg{width:clamp(22px,4vw,30px);height:auto}
+
+:where(.page-underground) .next-step{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:10px 18px;border:0;border-radius:8px;background:transparent;color:var(--muted);font:inherit;font-size:13px}:where(.page-underground) .next-step:hover{color:var(--accent);background:var(--soft)}:where(.page-underground) .next-step svg{width:16px;height:16px}
+
+:where(.page-underground) .practice-content .marks button{border:0;background:var(--soft)}
+:where(.page-underground) .practice-content .marks button:hover{background:color-mix(in srgb,var(--accent) 16%,var(--bg))}
+:where(.page-underground) .practice-content .marks button.checked{background:color-mix(in srgb,var(--accent) 25%,var(--bg));color:var(--accent)}
+
+@keyframes mark-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.055)}}
+:where(.page-underground) .practice-content .marks button.suggested{position:relative;background:transparent;isolation:isolate}
+:where(.page-underground) .practice-content .marks button.suggested::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:50%;background:var(--soft);animation:mark-breathe 2.8s ease-in-out infinite;pointer-events:none}
+:where(.page-underground) .practice-content .marks button.suggested:hover::before{background:color-mix(in srgb,var(--accent) 16%,var(--bg))}
+@media(prefers-reduced-motion:reduce){:where(.page-underground) .practice-content .marks button.suggested::before{animation:none}}
+
+:where(.page-underground) .practice-content .marks{position:relative;width:max-content;max-width:100%;margin-left:auto;margin-right:auto;margin-bottom:58px}
+:where(.page-underground) .practice-content .marks .marks-next{position:absolute;right:0;top:calc(100% + 8px);width:44px;height:44px;border:0;background:transparent;color:var(--accent);animation:none}
+:where(.page-underground) .practice-content .marks .marks-next:hover{background:var(--soft)}
+@media(min-width:680px){:where(.page-underground) .practice-content .marks .marks-next{right:auto;left:calc(100% + 12px);top:50%;transform:translateY(-50%)}:where(.page-underground) .practice-content .marks{margin-bottom:18px}}
+
+:where(.page-underground) .practice-content .marks{margin-top:76px;margin-bottom:104px}
+@media(min-width:680px){:where(.page-underground) .practice-content .marks{margin-top:84px;margin-bottom:72px}}
+@media(max-height:600px){:where(.page-underground) .practice-content .marks{margin-top:40px;margin-bottom:76px}}
+/* Anchor the marks themselves at the viewport midpoint. */
+:where(.page-underground) .grounding-practice:has(.step-card){position:relative;padding-top:0}
+:where(.page-underground) .grounding-practice:has(.step-card) .practice-content{display:block;padding:0;flex:none}
+:where(.page-underground) .practice-content>.step-card{position:absolute;top:50svh;left:50%;transform:translate(-50%,-50%);width:calc(100% - 48px);max-width:520px}
+:where(.page-underground) .practice-content .marks{margin:0 auto}
+:where(.page-underground) .practice-copy{position:absolute;bottom:calc(100% + 64px);left:0;width:100%}
+:where(.page-underground) .practice-copy .step-hint{margin-bottom:0}
+:where(.page-underground) .practice-caption{position:absolute;top:calc(100% + 72px);left:0;width:100%}
+:where(.page-underground) .grounding-practice:has(.step-card) .practice-controls{position:absolute;bottom:max(24px,env(safe-area-inset-bottom));left:0;width:100%}
+@media(max-height:650px){:where(.page-underground) .practice-copy{bottom:calc(100% + 24px)}:where(.page-underground) .practice-copy .session-progress{margin-bottom:10px}:where(.page-underground) .practice-copy h1{font-size:24px}:where(.page-underground) .practice-copy .eyebrow{margin-bottom:8px}:where(.page-underground) .practice-caption{top:calc(100% + 56px)}}
+
+:where(.page-underground) .grounding-practice .practice-controls{flex-direction:column;align-items:center;gap:14px}
+:where(.page-underground) .practice-controls>div{display:flex;gap:10px}
+:where(.page-underground) .practice-controls small{font-size:10px;color:var(--muted);line-height:1.6;text-align:center}
+@media(pointer:coarse){:where(.page-underground) .practice-controls small{display:none}}
+
+@media(pointer:coarse),(hover:none){:where(.page-underground) .keyboard-hint{display:none}}
+
+/* Start card follows the shared settings screens. */
+:where(.page-underground) .welcome{width:100%;margin:0 auto;text-align:left}
+:where(.page-underground) .welcome .sense-overview{margin:0 0 28px;gap:8px;text-align:center}
+:where(.page-underground) .welcome .sense-overview>div{gap:8px}
+:where(.page-underground) .welcome .sense-overview span{font-size:clamp(30px,6vw,40px)}
+:where(.page-underground) .welcome .sense-overview small{font-size:11px}
+:where(.page-underground) .welcome .primary{width:100%;max-width:none;margin:0}
+@media(max-width:560px){:where(.page-underground) .welcome .sense-overview small{font-size:10px}}
